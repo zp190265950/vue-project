@@ -6,6 +6,7 @@
     </div>
     <div>header</div>
     <div>第一次提交</div>
+    <div>第二次提交显示</div>
     <router-view/>
   </div>
 </template>
