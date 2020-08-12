@@ -5,6 +5,7 @@
       <router-link to="/about">About</router-link>
     </div>
     <div>header</div>
+    <div>第一次提交</div>
     <router-view/>
   </div>
 </template>
