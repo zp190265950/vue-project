@@ -4,9 +4,6 @@
       <router-link to="/">Home</router-link> |
       <router-link to="/about">About</router-link>
     </div>
-    <div>header</div>
-    <div>第一次提交</div>
-    <div>第二次提交显示</div>
     <router-view/>
   </div>
 </template>

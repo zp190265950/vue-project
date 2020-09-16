@@ -24,7 +24,7 @@ export async function bootstrap(props) {
 };
 export async function mount(props) {
   console.log(props)
-    render(props)
+  render(props)
 }
 export async function unmount(props) {
     instance.$destroy();
