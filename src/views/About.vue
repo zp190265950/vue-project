@@ -9,22 +9,73 @@
     <button @click="runWebWork" style="width: 100px">启动work</button>
     <span>{{count}}</span>
     <BackTop />
+    <!-- <BaseEditor
+      v-model="value"
+      action=""/> -->
+    <quill-editor
+      v-model="content"
+      ref="myQuillEditor"
+      :options="editorOption"
+      class="quill-editor">
+    </quill-editor>
   </div>
 </template>
 <script>
 import BackTop from '@/components/BackTop'
 import WebWork from '@/assets/js/webWork'
+// import BaseEditor from '@/components/BaseEditor'
+import { quillEditor, Quill } from 'vue-quill-editor'
+import 'quill/dist/quill.core.css'
+import 'quill/dist/quill.snow.css'
+import 'quill/dist/quill.bubble.css'
+import { addQuillTitle } from './assets/js/quill-title.js'
+import { ImageDrop } from 'quill-image-drop-module';
+// import * as Quill from 'quill'; // 富文本基于quill
+import { quillArr } from './assets/js/config.js'
+// console.log({Quill, ImageDrop})
+Quill.register('modules/imageDrop', ImageDrop)
 
 let work = null
 
 export default {
-  components: { BackTop },
+  components: {
+    BackTop,
+    // BaseEditor,
+    quillEditor
+  },
   data () {
     return {
       message: '',
       list: [],
-      count: 0
+      count: 0,
+      value: '',
+      content: ''
     }
+  },
+  computed: {
+    editorOption () { //  富文本编辑器配置
+      return {
+        theme: 'snow',
+        placeholder: '请输入正文',
+        // modules: {
+        //   },
+        modules:{
+          toolbar: quillArr,
+          imageDrop:true, 
+          // imageResize: {
+          //   displayStyles: {
+					// 		backgroundColor: 'black',
+					// 		border: 'none',
+					// 		color: 'white'
+					// 	},
+					// 	modules: [ 'Resize', 'DisplaySize', 'Toolbar' ]
+          // }
+        }
+      }
+    }
+  },
+  mounted() {
+    addQuillTitle()
   },
   methods: {
     getData () {
@@ -74,7 +125,8 @@ export default {
         work = null
         console.timeEnd()
       }
-    }
+    },
+    action () {}
   }
 }
 </script>
@@ -95,6 +147,10 @@ export default {
   }
   .right {
     width: 100px;
+  }
+  .quill-editor {
+    width: 500px;
+    height: 200px;
   }
 }
 </style>

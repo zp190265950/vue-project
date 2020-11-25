@@ -1,6 +1,7 @@
 <template>
   <div class="home">
     <img alt="Vue logo" src="../assets/logo.png">
+    <div class="image"></div>
     <HelloWorld msg="Welcome to Your Vue.js App"/>
     <button @click="windowOpen = !windowOpen">切换元素</button>
     <overdrive key="a" id="window" :duration="100" v-if="!windowOpen">
@@ -45,6 +46,12 @@ export default {
     border-radius: 50px;
     line-height: 100px;
     background: blue;
+  }
+  .image {
+    width: 50px;
+    height: 50px;
+    background: url('../assets/logo.png');
+    background-size: 100%;
   }
 }
 </style>

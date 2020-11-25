@@ -8,8 +8,10 @@
   },
   "dependencies": {
     "core-js": "^3.6.5",
+    "quill-image-drop-module": "^1.0.3",
     "vue": "^2.6.11",
     "vue-overdrive": "^1.2.0",
+    "vue-quill-editor": "^3.0.6",
     "vue-router": "^3.2.0"
   },
   "devDependencies": {
