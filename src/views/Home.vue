@@ -1,6 +1,6 @@
 <template>
   <div class="home">
-    <img alt="Vue logo" src="../assets/logo.png">
+    <img alt="Vue logo" :src="require('../assets/logo.png')">
     <div class="image"></div>
     <HelloWorld msg="Welcome to Your Vue.js App"/>
     <button @click="windowOpen = !windowOpen">切换元素</button>
