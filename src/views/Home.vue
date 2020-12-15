@@ -2,6 +2,7 @@
   <div class="home">
     <img alt="Vue logo" :src="require('../assets/logo.png')">
     <div class="image"></div>
+    <p>服务器更改变化</p>
     <HelloWorld msg="Welcome to Your Vue.js App"/>
     <button @click="windowOpen = !windowOpen">切换元素</button>
     <overdrive key="a" id="window" :duration="100" v-if="!windowOpen">
@@ -39,6 +40,9 @@ export default {
     width: 300px;
     height: 300px;
     background: red;
+  }
+  p {
+    color: black;
   }
   .home-end {
     width: 100px;

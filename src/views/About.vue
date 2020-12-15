@@ -7,6 +7,7 @@
     </div>
     <p class="right">测试一次提交</p>
     <button @click="runWebWork" style="width: 100px">启动work</button>
+    <button @click="goRouter" style="width: 100px">启动一个惊喜</button>
     <span>{{count}}</span>
     <BackTop />
     <!-- <BaseEditor
@@ -126,7 +127,10 @@ export default {
         console.timeEnd()
       }
     },
-    action () {}
+    action () {},
+    goRouter () {
+      this.$router.push({ name: 'love' })
+    }
   }
 }
 </script>
