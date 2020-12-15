@@ -7,7 +7,7 @@
         v-for="item in 6"
         :key="item"
         class="image-item">
-        <img alt="Vue logo" src="../assets/img/tupian.jpg" class="img" />
+        <img alt="Vue logo" :src="require(`../assets/img/${item}.jpg`)" class="img" />
       </li>
     </ul>
     <ul class="images-max">
@@ -15,7 +15,7 @@
         v-for="item in 6"
         :key="item"
         class="image-item-max">
-        <img alt="Vue logo" src="../assets/img/tupian.jpg" class="img-max" />
+        <img alt="Vue logo" :src="require(`../assets/img/${item}.jpg`)" class="img-max" />
       </li>
     </ul>
     <!-- </div> -->
@@ -104,8 +104,8 @@ ul, li {
       transform-origin: center center;
       transition: 2s;
       position: absolute;
-      top: 0;
-      left: 0;
+      top: -25px;
+      left: -25px;
       .image-item-max {
         background: transparent;
         position: absolute;
