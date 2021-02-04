@@ -1,7 +1,7 @@
 
 const Timestamp = new Date().getTime();
 const isPro = process.env.NODE_ENV === 'production'
-const publicPath = isPro ? '//8.129.230.32/:8081/vue/' : `//192.168.0.36:9000/vue/`;
+const publicPath = isPro ? '//8.129.230.32/:8081/parent/vue/' : `//192.168.0.36:9000/vue/`;
 const CompressionPlugin = require('compression-webpack-plugin')
 const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin
 
@@ -44,6 +44,7 @@ module.exports = {
   // },
 
   chainWebpack: config => {
+    console.log(process.env.NODE_ENV)
     if (process.env.NODE_ENV === 'production') {
       // 给js和css配置版本号
       config.output.filename('static/js/[name].' + Timestamp + '.js').end();
@@ -61,7 +62,7 @@ module.exports = {
         fallback: {
           loader: 'file-loader',
           options: {
-            name: 'img/[name].[hash:8].[ext]',
+            name: 'static/img/[name].[hash:8].[ext]',
             publicPath
           }
         }
