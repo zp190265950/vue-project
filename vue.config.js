@@ -1,7 +1,7 @@
 
 const Timestamp = new Date().getTime();
 const isPro = process.env.NODE_ENV === 'production'
-const publicPath = isPro ? '//8.129.230.32/:8081/parent/vue/' : `//192.168.0.36:9000/vue/`;
+// const publicPath = isPro ? '//8.129.230.32/:8081/parent/vue/' : `//192.168.0.36:9000/vue/`;
 const CompressionPlugin = require('compression-webpack-plugin')
 const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin
 
@@ -58,12 +58,12 @@ module.exports = {
       .use('url-loader')
       .loader('url-loader')
       .options({
-        limit: 4096, // 小于4kb将会被打包成 base64
+        limit: 40960, // 小于4kb将会被打包成 base64
         fallback: {
           loader: 'file-loader',
           options: {
-            name: 'static/img/[name].[hash:8].[ext]',
-            publicPath
+            name: 'static/img/[name].[hash:8].[ext]'
+            // publicPath
           }
         }
       })

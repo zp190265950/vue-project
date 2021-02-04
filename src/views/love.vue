@@ -7,7 +7,7 @@
         v-for="item in 6"
         :key="item"
         class="image-item">
-        <img alt="Vue logo" :src="require(`../assets/img/${item}.jpg`)" class="img" />
+        <img alt="Vue logo" :src="require(`./../assets/img/${item}.jpg`)" class="img" />
       </li>
     </ul>
     <ul class="images-max">
@@ -15,7 +15,7 @@
         v-for="item in 6"
         :key="item"
         class="image-item-max">
-        <img alt="Vue logo" :src="require(`../assets/img/${item}.jpg`)" class="img-max" />
+        <img alt="Vue logo" :src="require(`./../assets/img/${item}.jpg`)" class="img-max" />
       </li>
     </ul>
     <!-- </div> -->
