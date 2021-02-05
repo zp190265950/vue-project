@@ -21,8 +21,8 @@ module.exports = {
   configureWebpack: {
     output: { // 输出文件配置
       library: 'vue', // 输出后的文件名称
-      libraryTarget: 'umd', // 这些选项将入口起点的返回值（例如，入口起点的任何导出值），在 bundle 包所引入的位置，赋值给 output.library 提供的变量名。
-      jsonpFunction: `webpackJsonp_vue`
+      libraryTarget: 'umd' // 这些选项将入口起点的返回值（例如，入口起点的任何导出值），在 bundle 包所引入的位置，赋值给 output.library 提供的变量名。
+      // jsonpFunction: `webpackJsonp_vue`
       // filename: `static/js/[name].${process.env.VUE_APP_VERDION}.${Timestamp}.js`, // // 输出重构  打包编译后的 文件名称  【模块名称.版本号.时间戳】
       // chunkFilename: `static/js/[name].${process.env.VUE_APP_VERDION}.${Timestamp}.js`,
       // globalObject: 'this'
