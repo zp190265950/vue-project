@@ -1,6 +1,7 @@
 <template>
   <div class="about">
     <!-- <p class="left">第二次提交</p> -->
+    <p>自动构建提示</p>
     <div class="center" ref="dom" @click="getData">
       This is an about page
       <span v-for="(item, index) in list" :key="index">{{item.index}}/</span>
