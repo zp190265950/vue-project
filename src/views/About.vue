@@ -138,9 +138,6 @@ export default {
 .about {
   display: flex;
   flex-direction: column;
-  .left {
-    // width: 100px;
-  }
   .center {
     flex: 1;
     display: flex;
