@@ -4,7 +4,26 @@
     <p>自动构建提示</p>
     <div class="center" ref="dom" @click="getData">
       This is an about page
-      <span v-for="(item, index) in list" :key="index">{{item.index}}/</span>
+    </div>
+    <div class="scroll" @scroll="changeScroll">
+      <ul
+        v-for="(child, index) in list"
+        :key="index"
+        class="list">
+        <template v-if="child.length">
+          <li
+            v-for="(item, i) in child"
+            :key="`${index}-${i}`"
+            class="item">
+            <span>{{(i + 1) + (index * 200)}}</span>
+            <span>测试显示多个dom</span>
+            <span>我是测试dom</span>
+          </li>
+        </template>
+        <!-- <div v-else :style="{width: }">
+
+        </div> -->
+      </ul>
     </div>
     <p class="right">测试一次提交</p>
     <button @click="runWebWork" style="width: 100px">启动work</button>
@@ -48,7 +67,9 @@ export default {
   data () {
     return {
       message: '',
-      list: [],
+      list:[],
+      catchList: [],
+      // list: new Array(100000),
       count: 0,
       value: '',
       content: ''
@@ -76,10 +97,50 @@ export default {
       }
     }
   },
+  // watch: {
+  //   'list.length': {
+  //     handler (val) {
+  //       console.log(val)
+  //     },
+  //     deep: true
+  //   }
+  // },
   mounted() {
+    this.initData()
     addQuillTitle()
   },
   methods: {
+    initData () {
+      const arr = new Array(99999)
+      this.list.push(arr.splice(0, 200))
+      this.workList(arr)
+    },
+    workList (arr) {
+      const fn = function () {
+        this.onmessage = e => {
+          const brr = []
+          const arr = e.data
+          while (arr.length >= 200) {
+            if (arr.length >= 200) {
+              brr.push(arr.splice(0, 200))
+            } else {
+              brr.push(arr.splice(0, arr.length - 1))
+            }
+          }
+          // this.list = arr
+          postMessage(brr)
+        }
+      }
+      console.time()
+      work = new WebWork(fn)
+      work.postMessage(arr)
+      work.onmessage = e => {
+        this.catchList = e.data
+        work.terminate()
+        work = null
+        console.timeEnd()
+      }
+    },
     getData () {
       const dom = this.$refs.dom
       const arr = new Array(10000)
@@ -99,6 +160,7 @@ export default {
           }
           // dom.append(p)
           _this.list = _this.list.concat(brr)
+          // console.log(_this.list)
           num++
           // console.log(num, loopCount)
           if (num < loopCount) {
@@ -131,11 +193,35 @@ export default {
     action () {},
     goRouter () {
       this.$router.push({ name: 'love' })
+    },
+    changeScroll (e) {
+      // console.log(e)
+      if (this.timer) return
+      this.timer = setTimeout(() => {
+        const { scrollTop, scrollHeight, clientHeight } = e.target
+        const height = scrollHeight - clientHeight - scrollTop
+        // console.log(height, scrollTop, scrollHeight)
+        if (height > 100) {
+          this.timer = null
+          return
+        }
+        // console.log(this.catchList.splice(0, 1))
+        const arr = this.catchList.splice(0, 1)
+        // console.log(arr, this.catchList)
+        this.list.push(...arr)
+        // console.log(this.list)
+        this.timer = null
+      }, 200)
     }
   }
 }
 </script>
 <style lang="less" scoped>
+ul,li {
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
 .about {
   display: flex;
   flex-direction: column;
@@ -154,5 +240,19 @@ export default {
     width: 500px;
     height: 200px;
   }
+}
+.scroll {
+  overflow-y: auto;
+  height: 400px;
+}
+.list {
+  min-height: 6000px;
+  // overflow-y: auto;
+  // height: 400px;
+}
+.item {
+  line-height: 28px;
+  height: 28px;
+  border-bottom: 2px solid #cccccc;
 }
 </style>
